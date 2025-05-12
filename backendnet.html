@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Clone</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #141414;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #111;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      color: #e50914;
+      font-weight: bold;
+    }
+
+    .navbar .menu a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      background: url('https://assets.nflxext.com/ffe/siteui/vlv3/30b3e870-ef6e-43e7-b16d-e91c1269b2a0/245f7e8c-06a6-4f9b-a139-54b12c6b14e6/US-en-20230522-popsignuptwoweeks-perspective_alpha_website_medium.jpg') no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero .content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 8px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      background-color: #e50914;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .movie-row {
+      padding: 20px;
+    }
+
+    .movie-row h2 {
+      margin-bottom: 10px;
+    }
+
+    .movies {
+      display: flex;
+      overflow-x: auto;
+    }
+
+    .movie {
+      min-width: 150px;
+      margin-right: 10px;
+    }
+
+    .movie img {
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .feedback-form {
+      padding: 20px;
+      background-color: #222;
+      margin: 20px;
+      border-radius: 8px;
+    }
+
+    .feedback-form h2 {
+      margin-bottom: 10px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .feedback-form button {
+      padding: 10px 20px;
+      background-color: #e50914;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo">NETFLIX</div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">TV Shows</a>
+      <a href="#">Movies</a>
+      <a href="#">My List</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="content">
+      <h1>Unlimited movies, TV shows, and more.</h1>
+      <p>Watch anywhere. Cancel anytime.</p>
+      <button>Watch Now</button>
+    </div>
+  </div>
+
+  <div class="movie-row">
+    <h2>Trending Now</h2>
+    <div class="movies">
+      <div class="movie"><img src="https://via.placeholder.com/150x200" alt="Movie"></div>
+      <div class="movie"><img src="https://via.placeholder.com/150x200" alt="Movie"></div>
+      <div class="movie"><img src="https://via.placeholder.com/150x200" alt="Movie"></div>
+      <div class="movie"><img src="https://via.placeholder.com/150x200" alt="Movie"></div>
+      <div class="movie"><img src="https://via.placeholder.com/150x200" alt="Movie"></div>
+    </div>
+  </div>
+  // server.js
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post("/feedback", (req, res) => {
+  const { name, email, message } = req.body;
+  console.log("Feedback received:");
+  console.log("Name:", name);
+  console.log("Email:", email);
+  console.log("Message:", message);
+  res.send("Feedback submitted successfully!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+  <div class="feedback-form">
+    <h2>Feedback</h2>
+    <form action="http://localhost:3000/feedback" method="POST">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" rows="4" placeholder="Your feedback" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
